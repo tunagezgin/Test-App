@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 # ECR URI'yi kendi hesabına göre düzenle
-ECR_URI="AWS_ACCOUNT_ID.dkr.ecr.AWS_REGION.amazonaws.com/test-app:latest"
+ECR_URI="677276116587.dkr.ecr.us-east-1.amazonaws.com/tuna/test-app:latest"
 
 # Pull & run
 docker pull $ECR_URI
