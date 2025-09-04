@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    REPO_NAME: "Test-App" # 
+    REPO_NAME: "test-app" # 
 phases:
   pre_build:
     commands:
@@ -11,13 +11,13 @@ phases:
       - export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$Test-App
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$test-app
       - IMAGE_TAG=latest
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $Test-App:$IMAGE_TAG .
-      - docker tag $Test-App:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $test-app:$IMAGE_TAG .
+      - docker tag $test-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Pushing the Docker image...
